@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "یارا | داشبورد هوشمند",
+  "short_name": "یارا",
+  "version": "1.0.0",
+  "description": "داشبورد اختصاصی و هوشمند شما — کارها، یادداشت‌ها، تقویم، عادت‌ها، آمار و ده‌ها ابزار دیگر.",
+  "author": "theesmaeil",
+  "homepage_url": "https://github.com/theesmaeil/yara-dashboard",
+
+  "icons": {
+    "16": "logo.png", "32": "logo.png",
+    "48": "logo.png", "128": "logo.png"
+  },
+
+  "chrome_url_overrides": { "newtab": "index.html" },
+
+  "action": {
+    "default_title": "یارا — داشبورد هوشمند",
+    "default_icon": { "16": "logo.png", "32": "logo.png", "48": "logo.png", "128": "logo.png" }
+  },
+
+  "permissions": ["storage", "geolocation", "notifications", "alarms"],
+
+  "host_permissions": [
+    "https://api.open-meteo.com/*",
+    "https://www.google.com/s2/favicons*",
+    "https://raw.githubusercontent.com/*"
+  ],
+
+  "browser_specific_settings": {
+    "gecko": { "id": "yara@theesmaeil.github.io", "strict_min_version": "109.0" }
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
