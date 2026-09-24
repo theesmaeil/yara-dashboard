@@ -1,0 +1,31 @@
+name: Release Yara Extension
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: Pack Extension
+        run: |
+          mkdir -p dist
+          cp manifest.json index.html app.js logo.png dist/
+          cd dist
+          google-chrome-stable --pack-extension=. --no-message-box || true
+          mv .crx ../yara.crx || true
+
+      - name: Upload CRX to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: yara.crx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
